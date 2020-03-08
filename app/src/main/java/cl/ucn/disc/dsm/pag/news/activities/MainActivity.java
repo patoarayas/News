@@ -16,10 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cl.ucn.disc.dsm.pag.news;
+package cl.ucn.disc.dsm.pag.news.activities;
 
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import cl.ucn.disc.dsm.pag.news.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,5 +29,6 @@ public class MainActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+
   }
 }
