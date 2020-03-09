@@ -16,7 +16,7 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cl.ucn.disc.dsm.pag.news;
+package cl.ucn.disc.dsm.pag.news.model;
 
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import org.junit.jupiter.api.Assertions;
