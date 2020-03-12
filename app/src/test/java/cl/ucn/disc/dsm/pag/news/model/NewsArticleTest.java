@@ -41,8 +41,12 @@ public class NewsArticleTest {
     final ZonedDateTime date = ZonedDateTime.now(NewsArticle.timezone);
 
     // NewsArticle instance
-    final NewsArticle article =
-        new NewsArticle(id, title, source, author, articleUrl, imgUrl, summary, content, date);
+    final NewsArticle article = new NewsArticleBuilder(id,title,summary,date)
+        .withAuthor(author)
+        .withContent(content)
+        .withArticleUrl(articleUrl)
+        .withImageUrl(imgUrl)
+        .withSource(source).build();
 
     // Assertions
     Assertions.assertEquals(id, article.getId());

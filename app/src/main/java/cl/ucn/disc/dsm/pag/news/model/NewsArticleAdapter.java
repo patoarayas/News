@@ -18,6 +18,7 @@
 
 package cl.ucn.disc.dsm.pag.news.model;
 
+import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,9 +26,10 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class NewsArticleAdapter<T> {
 
-  public static final Logger LOG = LoggerFactory.getLogger(NewsArticleAdapter.class);
+
   // Adapter
   private final NewsArticleTransformer<T> newsArticleTransformer;
 
@@ -55,7 +57,7 @@ public class NewsArticleAdapter<T> {
         news.add(newsArticleTransformer.transform(t));
       } catch (NewsArticleTransformerException e) {
 
-        LOG.debug("NewsApi article cannot be transformed");
+        Log.d("NewsArticleAdapter", "Unable to transform article");
       }
 
 
