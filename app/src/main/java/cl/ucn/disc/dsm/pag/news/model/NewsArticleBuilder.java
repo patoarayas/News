@@ -21,31 +21,42 @@ package cl.ucn.disc.dsm.pag.news.model;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
 
-/**
- * Builder class for NewsArticle.
- * To manage the complexity of making a NewsArticle Object
- */
+/** Builder class for NewsArticle. To manage the complexity of making a NewsArticle Object */
 public class NewsArticleBuilder {
 
   public static final ZoneId timezone = ZoneId.of("-3");
   private final Long id;
   private final String title;
   private final String summary;
-  private  String source;
-  private  String author;
-  private  String articleUrl;
-  private  String imgUrl;
-  private  String content;
-  private  ZonedDateTime date;
+  private String source;
+  private String author;
+  private String articleUrl;
+  private String imgUrl;
+  private String content;
+  private ZonedDateTime date;
 
   /**
    * Constructor
+   *
    * @param id Internal id to the article
    * @param title Article's title.
    * @param summary Articles's summary.
    */
   public NewsArticleBuilder(Long id, String title, String summary, ZonedDateTime date) {
     // Minimum fields
+    if(id == null){
+      throw new NewsArticleBuilderException("ID provided was null.");
+    }
+    if(title == null){
+      throw new NewsArticleBuilderException("Title provided was null.");
+    }
+    if(summary == null){
+      throw new NewsArticleBuilderException("Summary provided was null.");
+    }
+    if(date == null){
+      throw new NewsArticleBuilderException("Date provided was null.");
+    }
+
     this.id = id;
     this.title = title;
     this.summary = summary;
@@ -54,27 +65,28 @@ public class NewsArticleBuilder {
     // Default fields
     this.source = "No source";
     this.author = "Anonymous";
-    this.articleUrl= "No URL to article";
+    this.articleUrl = "No URL to article";
     this.imgUrl = "No URL to image";
     this.content = "No more content";
-    this.date = null;
   }
 
   /**
    * Builder method.
+   *
    * @return A well formed NewsArticle instance.
    */
-  public NewsArticle build(){
+  public NewsArticle build() {
     return new NewsArticle(this);
   }
 
   /**
    * Add a source to the NewsArticle to be created.
+   *
    * @param source A source to be added
    * @return The Builder
    */
-  public NewsArticleBuilder withSource(String source){
-    if(source != null && !source.equals("")){
+  public NewsArticleBuilder withSource(String source) {
+    if (source != null && !source.equals("")) {
       this.source = source;
     }
     return this;
@@ -82,11 +94,12 @@ public class NewsArticleBuilder {
 
   /**
    * Add an author to the NewsArticle to be created.
+   *
    * @param author Name of the author to be added
    * @return The Builder
    */
-  public NewsArticleBuilder withAuthor(String author){
-    if(author != null && !author.equals("")){
+  public NewsArticleBuilder withAuthor(String author) {
+    if (author != null && !author.equals("")) {
       this.author = author;
     }
     return this;
@@ -94,11 +107,12 @@ public class NewsArticleBuilder {
 
   /**
    * Add an URL to the NewsArticle to be created
+   *
    * @param articleUrl An http link to the article.
    * @return The Builder
    */
-  public NewsArticleBuilder withArticleUrl(String articleUrl){
-    if(articleUrl!= null && !articleUrl.equals("")){
+  public NewsArticleBuilder withArticleUrl(String articleUrl) {
+    if (articleUrl != null && !articleUrl.equals("")) {
       this.author = author;
     }
     return this;
@@ -106,11 +120,12 @@ public class NewsArticleBuilder {
 
   /**
    * Add an URL to an image related to the article.
+   *
    * @param imgUrl An http link to the image.
    * @return The Builder
    */
-  public NewsArticleBuilder withImageUrl(String imgUrl){
-    if(imgUrl != null && !imgUrl.equals("")){
+  public NewsArticleBuilder withImageUrl(String imgUrl) {
+    if (imgUrl != null && !imgUrl.equals("")) {
       this.imgUrl = imgUrl;
     }
     return this;
@@ -118,11 +133,12 @@ public class NewsArticleBuilder {
 
   /**
    * Add the body content to the NewsArticle
+   *
    * @param content The content of the article.
    * @return The Builder
    */
-  public NewsArticleBuilder withContent(String content){
-    if(content != null && !content.equals("") ){
+  public NewsArticleBuilder withContent(String content) {
+    if (content != null && !content.equals("")) {
       this.content = content;
     }
     return this;
@@ -162,5 +178,17 @@ public class NewsArticleBuilder {
 
   public ZonedDateTime getDate() {
     return date;
+  }
+
+  /** NewsArticle Builder Exception. */
+  public static class NewsArticleBuilderException extends RuntimeException {
+
+    public NewsArticleBuilderException(String message) {
+      super(message);
+    }
+
+    public NewsArticleBuilderException(String message, Throwable cause) {
+      super(message, cause);
+    }
   }
 }

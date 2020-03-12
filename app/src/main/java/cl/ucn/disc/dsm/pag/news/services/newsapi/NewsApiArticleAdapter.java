@@ -20,14 +20,18 @@ package cl.ucn.disc.dsm.pag.news.services.newsapi;
 
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticleAdapter;
+import cl.ucn.disc.dsm.pag.news.model.NewsArticleAdapter.NewsArticleTransformerException;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticleBuilder;
 import net.openhft.hashing.LongHashFunction;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeParseException;
 
 public class NewsApiArticleAdapter implements NewsArticleAdapter.NewsArticleTransformer<Article> {
 
-
+  // Logger
+  final static Logger LOG = LoggerFactory.getLogger(NewsApiArticleAdapter.class);
   /**
    * Transform an article from NewsApi into a NewsArticle.
    * @param article The newsApi article.
@@ -48,11 +52,15 @@ public class NewsApiArticleAdapter implements NewsArticleAdapter.NewsArticleTran
       throw new NewsArticleAdapter.NewsArticleTransformerException("article with no description");
     }
 
-    // Parsed publishedAt
-    final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt).withZoneSameInstant(NewsArticle.timezone);
-
     // ID
-    final Long id = LongHashFunction.xx().hashChars(article.title + article.source.name);
+    // FIXME: Error with hashing library no getByte method.
+    // See at
+    final Long id = LongHashFunction.xx().hashChars(article.title+article.source.name);
+
+      // Parsed publishedAt
+     final ZonedDateTime publishedAt = parseZonedDateTime(article.publishedAt).withZoneSameInstant(NewsArticle.timezone);
+
+     LOG.debug("FECHA: "+publishedAt.toString());
 
     NewsArticleBuilder builder = new NewsArticleBuilder(id,article.title,article.description,publishedAt)
         .withAuthor(article.author)
