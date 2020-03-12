@@ -19,6 +19,7 @@
 package cl.ucn.disc.dsm.pag.news.services;
 
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
+import cl.ucn.disc.dsm.pag.news.model.NewsArticleBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.ZonedDateTime;
@@ -45,10 +46,8 @@ public class MockupNewsService implements NewsService{
     List<NewsArticle> news = new ArrayList<NewsArticle>();
 
     for(int i = 0; i < pageSize; i++){
-      news.add(new NewsArticle(
-          i*1L,"Title","Source","Autor","URL",
-          "IMG","summary","content", ZonedDateTime.now()
-      ));
+      NewsArticle art = new NewsArticleBuilder(i*1L,"MockTitle","MockSummary",ZonedDateTime.now()).build();
+      news.add(art);
     }
 
     return news;

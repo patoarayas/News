@@ -78,7 +78,7 @@ public class NewsApiNewsService implements NewsService {
   // TODO: implement category change or getEverthing()
   @Override
   public List<NewsArticle> getNews(int pageSize) {
-    final Call<NewsApiResult> call = this.newsApi.getTopHeadlines("all",pageSize);
+    final Call<NewsApiResult> call = this.newsApi.getTopHeadlines("technology",pageSize);
     return getNewsFromCall(call);
   }
 
@@ -98,6 +98,7 @@ public class NewsApiNewsService implements NewsService {
     @GET("top-headlines")
     Call<NewsApiResult> getTopHeadlines(
         @Query("category") final String category, @Query("pageSize") final int pageSize);
+
   }
 
   /** Exception for NewsAPIService. */

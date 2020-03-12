@@ -18,18 +18,16 @@
 
 package cl.ucn.disc.dsm.pag.news.services.newsapi;
 
+import android.util.Log;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import cl.ucn.disc.dsm.pag.news.services.NewsService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 public class NewsApiNewsServiceTest {
 
-  // Logger
-  Logger LOG = LoggerFactory.getLogger(NewsApiNewsServiceTest.class);
 
   /**
    * Test if the NewsApi service is receiving news from the REST API.
@@ -48,8 +46,11 @@ public class NewsApiNewsServiceTest {
         "Number of news requested is different that the number of news received");
 
     // TODO: Log the news
-    /*for (final NewsArticle article : news){
-      LOG.debug(String.valueOf(article));
-    }*/
+    /*
+    for(NewsArticle art : news){
+      Log.d("Article transformed:","TITLE:"+art.getTitle());
+    }
+    */
+
   }
 }
