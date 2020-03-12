@@ -38,29 +38,20 @@ public class NewsArticle {
   public static final ZoneId timezone = ZoneId.of("-3");
 
   /**
-   * Constructor
-   * @param id NewsArticle ID
-   * @param title The article title
-   * @param source Origin of the article
-   * @param author Name of the writer or creator
-   * @param articleUrl URL to the article
-   * @param imgUrl URL to an image related to the article
-   * @param summary A description of the content
-   * @param content The content of the article
-   * @param date The date of publication.
+   * Constructor.
+   * @param builder The NewsArticleBuilder.
    */
-  public NewsArticle(Long id, String title, String source, String author, String articleUrl,
-      String imgUrl, String summary, String content, ZonedDateTime date) {
+  public NewsArticle(NewsArticleBuilder builder) {
 
-    this.id = id;
-    this.title = title;
-    this.source = source;
-    this.author = author;
-    this.articleUrl = articleUrl;
-    this.imgUrl = imgUrl;
-    this.summary = summary;
-    this.content = content;
-    this.date = date;
+    this.id = builder.getId();
+    this.title = builder.getTitle();
+    this.source = builder.getSource();
+    this.author = builder.getAuthor();
+    this.articleUrl = builder.getArticleUrl();
+    this.imgUrl = builder.getImgUrl();
+    this.summary = builder.getSummary();
+    this.content = builder.getContent();
+    this.date = builder.getDate();
   }
 
   public Long getId() {
