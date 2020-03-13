@@ -24,12 +24,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import cl.ucn.disc.dsm.pag.news.R;
 import cl.ucn.disc.dsm.pag.news.databinding.NewsArticleRowBinding;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
+import java.util.Date;
+import org.ocpsoft.prettytime.PrettyTime;
+import org.threeten.bp.DateTimeUtils;
 
 public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
 
 
 
   private final NewsArticleRowBinding binding;
+  // PrettyTime date formatter
+  private static final PrettyTime PRETTY_TIME = new PrettyTime();
 
   public NewsArticleViewHolder(NewsArticleRowBinding rowNewsArticleBinding) {
     super(rowNewsArticleBinding.getRoot());
@@ -41,7 +46,10 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     this.binding.summary.setText(newsArticle.getSummary());
     this.binding.author.setText(newsArticle.getAuthor());
     this.binding.source.setText(newsArticle.getSource());
-    this.binding.publishedAt.setText(newsArticle.getDate() == null?"no date":newsArticle.getDate().toString());
+    // Date
+    final Date date = DateTimeUtils.toDate(newsArticle.getDate().toInstant());
+    this.binding.publishedAt.setText(PRETTY_TIME.format(date));
+    // Image
     if(newsArticle.getImgUrl() != null){
       this.binding.image.setImageURI(newsArticle.getImgUrl());
     } else {

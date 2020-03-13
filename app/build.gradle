@@ -125,5 +125,8 @@ dependencies {
     implementation "com.facebook.fresco:fresco:$fresco_version"
     //implementation "com.facebook.fresco:imagepipeline-okhttp:$fresco_version"
 
+    // Prettytime
+    implementation "org.ocpsoft.prettytime:prettytime:4.0.2.Final"
+
 
 }
