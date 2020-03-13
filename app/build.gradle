@@ -119,4 +119,11 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.0-alpha01"
     // SwipeRefreshLayout https://developer.android.com/jetpack/androidx/releases/swiperefreshlayout
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-beta01"
+
+    // Fresco (Images):
+    def fresco_version = "2.1.0"
+    implementation "com.facebook.fresco:fresco:$fresco_version"
+    //implementation "com.facebook.fresco:imagepipeline-okhttp:$fresco_version"
+
+
 }

@@ -21,6 +21,7 @@ package cl.ucn.disc.dsm.pag.news.activities;
 import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import cl.ucn.disc.dsm.pag.news.R;
 import cl.ucn.disc.dsm.pag.news.databinding.NewsArticleRowBinding;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 
@@ -41,5 +42,11 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     this.binding.author.setText(newsArticle.getAuthor());
     this.binding.source.setText(newsArticle.getSource());
     this.binding.publishedAt.setText(newsArticle.getDate() == null?"no date":newsArticle.getDate().toString());
+    if(newsArticle.getImgUrl() != null){
+      this.binding.image.setImageURI(newsArticle.getImgUrl());
+    } else {
+      this.binding.image.setImageResource(R.drawable.ic_launcher_background);
+    }
+
   }
 }
