@@ -56,43 +56,43 @@ public class MainActivity extends AppCompatActivity {
     // Service
     this.service = new NewsApiNewsService();
 
-    // //TODO: Refresh button
-    binding.swlRefresh.setOnRefreshListener(() -> {
-      AsyncTask.execute(()-> {
-        final StopWatch stopWatch = StopWatch.createStarted();
 
-        try {
+    this.getNews();
+    binding.swlRefresh.setRefreshing(false);
 
-          // Get news from the service (News API)
-          final List<NewsArticle> news = this.service.getNews(50);
+    binding.swlRefresh.setOnRefreshListener(this::getNews);
+    if(binding.swlRefresh.isRefreshing()){
+      binding.swlRefresh.setRefreshing(false);
+    }
+  }
 
-          // (in UI)
-          this.runOnUiThread(() -> {
-            // Set adapter
-            this.adapter.setNews(news);
+  void getNews(){
 
-            // 3. Show a Toast!
-            Toast.makeText(this, "Done: " + stopWatch, Toast.LENGTH_SHORT).show();
-          });
-          }
-          catch(Exception ex){
+    AsyncTask.execute(()-> {
+      try {
 
-            this.runOnUiThread(() -> {
-              // Build error message
-              final StringBuffer sb = new StringBuffer("Error: ");
-              sb.append(ex.getMessage());
-              if (ex.getCause() != null) {
-                sb.append(", ");
-                sb.append(ex.getCause().getMessage());
-              }
-              // Show a Toast!
-              Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
-            });
-          } finally{
-          //binding.swlRefresh.setRefreshing(false);
-        }
+        // Get news from the service (News API)
+        final List<NewsArticle> news = this.service.getNews(50);
 
+        // (in UI)
+        this.runOnUiThread(() -> {
+          // Set adapter
+          this.adapter.setNews(news);
         });
+      }
+      catch(Exception ex){
+        this.runOnUiThread(() -> {
+          // Build error message
+          final StringBuffer sb = new StringBuffer("Error: ");
+          sb.append(ex.getMessage());
+          if (ex.getCause() != null) {
+            sb.append(", ");
+            sb.append(ex.getCause().getMessage());
+          }
+          // Show a Toast
+          Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
+        });
+      }
     });
 
   }

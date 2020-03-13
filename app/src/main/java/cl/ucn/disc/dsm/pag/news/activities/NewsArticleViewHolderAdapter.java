@@ -44,11 +44,6 @@ public class NewsArticleViewHolderAdapter extends RecyclerView.Adapter<NewsArtic
     this.notifyDataSetChanged();
   }
 
-
-
-
-
-
   @NonNull
   @Override
   public NewsArticleViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
