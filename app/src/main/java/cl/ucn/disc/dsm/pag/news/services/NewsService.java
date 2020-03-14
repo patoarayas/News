@@ -21,13 +21,12 @@ package cl.ucn.disc.dsm.pag.news.services;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import java.util.List;
 
-/**
- * Service interface.
- */
+/** Service interface. */
 public interface NewsService {
 
   /**
    * Get the news from the back-end.
+   *
    * @param pageSize How many news should be returned.
    * @return a List of news.
    */

@@ -18,7 +18,6 @@
 
 package cl.ucn.disc.dsm.pag.news.model;
 
-import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -26,22 +25,21 @@ import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class NewsArticleAdapter<T> {
 
-  public final static Logger LOG = LoggerFactory.getLogger(NewsArticleAdapter.class);
+  public static final Logger LOG = LoggerFactory.getLogger(NewsArticleAdapter.class);
   // Adapter
   private final NewsArticleTransformer<T> newsArticleTransformer;
 
   // Constructor
-  public NewsArticleAdapter(
-      NewsArticleTransformer<T> newsArticleTransformer) {
+  public NewsArticleAdapter(NewsArticleTransformer<T> newsArticleTransformer) {
     Objects.requireNonNull(newsArticleTransformer, "NewsArticleTransformer can't be null.");
     this.newsArticleTransformer = newsArticleTransformer;
   }
 
   /**
-   * Transforms a collection on a List of NewsArticle
+   * Transforms a collection on a List of NewsArticle.
+   *
    * @param collection The collection to be transformed
    * @return A list of NewsArticle
    */
@@ -59,25 +57,21 @@ public class NewsArticleAdapter<T> {
 
         LOG.debug("Unable to transform article");
       }
-
-
     }
 
     return news;
-
   }
 
   /**
-   * A public interface to be implemented for each <T> adapter
+   * A public interface to be implemented for each T adapter.
+   *
    * @param <T> A object to be transformed.
    */
   public interface NewsArticleTransformer<T> {
     NewsArticle transform(T t);
   }
 
-  /**
-   * Runtime exception for NewsArticleTransformer
-   */
+  /** Runtime exception for NewsArticleTransformer. */
   public static final class NewsArticleTransformerException extends RuntimeException {
 
     public NewsArticleTransformerException(String message) {

@@ -24,9 +24,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cl.ucn.disc.dsm.pag.news.databinding.NewsArticleRowBinding;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
-import cl.ucn.disc.dsm.pag.news.services.NewsService;
-import cl.ucn.disc.dsm.pag.news.services.gnews.GnewsNewsService;
-import cl.ucn.disc.dsm.pag.news.services.newsapi.NewsApiNewsService;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,15 +31,16 @@ public class NewsArticleViewHolderAdapter extends RecyclerView.Adapter<NewsArtic
 
   private List<NewsArticle> news;
 
-
-  /**
-   * Constructor
-   */
+  /** Constructor. */
   public NewsArticleViewHolderAdapter() {
     this.news = new ArrayList<NewsArticle>();
   }
 
-  public void setNews(final List<NewsArticle> news){
+  /**
+   * Set the news list with the provided List.
+   * @param news A NewsArticle List.
+   */
+  public void setNews(final List<NewsArticle> news) {
     // Update the list of news
     this.news = news;
     this.notifyDataSetChanged();

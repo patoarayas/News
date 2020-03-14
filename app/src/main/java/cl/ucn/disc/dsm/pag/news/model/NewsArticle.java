@@ -21,11 +21,10 @@ package cl.ucn.disc.dsm.pag.news.model;
 import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZonedDateTime;
 
-/**
- * Domain class, represents a news article.
- */
+/** Domain class, represents a news article. */
 public class NewsArticle {
 
+  public static final ZoneId timezone = ZoneId.of("-3");
   private final Long id;
   private final String title;
   private final String source;
@@ -35,10 +34,10 @@ public class NewsArticle {
   private final String summary;
   private final String content;
   private final ZonedDateTime date;
-  public static final ZoneId timezone = ZoneId.of("-3");
 
   /**
    * Constructor.
+   *
    * @param builder The NewsArticleBuilder.
    */
   public NewsArticle(NewsArticleBuilder builder) {

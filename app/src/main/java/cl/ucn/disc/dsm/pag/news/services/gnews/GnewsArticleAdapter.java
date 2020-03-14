@@ -21,7 +21,6 @@ package cl.ucn.disc.dsm.pag.news.services.gnews;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticleAdapter;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticleBuilder;
-import cl.ucn.disc.dsm.pag.news.services.gnews.GnewsNewsService.Gnews;
 import net.openhft.hashing.LongHashFunction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,13 +30,14 @@ import org.threeten.bp.format.DateTimeParseException;
 
 public class GnewsArticleAdapter implements NewsArticleAdapter.NewsArticleTransformer<Article> {
 
-  public final static Logger LOG = LoggerFactory.getLogger(GnewsArticleAdapter.class);
+  public static final Logger LOG = LoggerFactory.getLogger(GnewsArticleAdapter.class);
   /**
-   * Parse Article's date field into a valid ZonedDateTime
+   * Parse Article's date field into a valid ZonedDateTime.
    *
    * @param date Date to be parsed.
    * @return A valid ZonedDateTime
    */
+
   private static ZonedDateTime parseZonedDateTime(final String date) {
     if (date == null) {
       throw new NewsArticleAdapter.NewsArticleTransformerException("Article date was null");
@@ -48,13 +48,13 @@ public class GnewsArticleAdapter implements NewsArticleAdapter.NewsArticleTransf
     } catch (DateTimeParseException ex) {
 
       throw new NewsArticleAdapter.NewsArticleTransformerException(
-
           "Unable to parse date of article: " + date, ex);
     }
   }
 
   /**
    * Transform an article from GNews into a NewsArticle.
+   *
    * @param article The article to be transformed
    * @return A NewsArticle
    */
@@ -81,11 +81,14 @@ public class GnewsArticleAdapter implements NewsArticleAdapter.NewsArticleTransf
     final ZonedDateTime publishedAt =
         parseZonedDateTime(article.publishedAt).withZoneSameInstant(NewsArticle.timezone);
 
-    String description = article.description.equals("") ? "Open on the browser to see full story.": article.description;
+    String description =
+        article.description.equals("")
+            ? "Open on the browser to see full story."
+            : article.description;
     NewsArticleBuilder builder =
         new NewsArticleBuilder(id, article.title, description, publishedAt)
             .withSource(article.source.name)
-            .withAuthor(article.source.name+" team.")
+            .withAuthor(article.source.name + " team.")
             .withArticleUrl(article.url)
             .withImageUrl(article.image);
 

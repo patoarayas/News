@@ -26,14 +26,11 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class NewsApiNewsServiceTest {
 
   // Logger
-  final static Logger LOG = LoggerFactory.getLogger(NewsApiNewsServiceTest.class);
-  /**
-   * Test if the NewsApi service is receiving news from the REST API.
-   */
+  static final Logger LOG = LoggerFactory.getLogger(NewsApiNewsServiceTest.class);
+  /** Test if the NewsApi service is receiving news from the REST API. */
   @Test
   void testGetNewsFromNewsApi() {
 

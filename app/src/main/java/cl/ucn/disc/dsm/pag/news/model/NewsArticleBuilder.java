@@ -36,24 +36,24 @@ public class NewsArticleBuilder {
   private ZonedDateTime date;
 
   /**
-   * Constructor
+   * Constructor.
    *
-   * @param id Internal id to the article
+   * @param id Internal id to the article.
    * @param title Article's title.
    * @param summary Articles's summary.
    */
   public NewsArticleBuilder(Long id, String title, String summary, ZonedDateTime date) {
     // Minimum fields
-    if(id == null){
+    if (id == null) {
       throw new NewsArticleBuilderException("ID provided was null.");
     }
-    if(title == null){
+    if (title == null) {
       throw new NewsArticleBuilderException("Title provided was null.");
     }
-    if(summary == null){
+    if (summary == null) {
       throw new NewsArticleBuilderException("Summary provided was null.");
     }
-    if(date == null){
+    if (date == null) {
       throw new NewsArticleBuilderException("Date provided was null.");
     }
 
@@ -106,7 +106,7 @@ public class NewsArticleBuilder {
   }
 
   /**
-   * Add an URL to the NewsArticle to be created
+   * Add an URL to the NewsArticle to be created.
    *
    * @param articleUrl An http link to the article.
    * @return The Builder
@@ -132,7 +132,7 @@ public class NewsArticleBuilder {
   }
 
   /**
-   * Add the body content to the NewsArticle
+   * Add the body content to the NewsArticle.
    *
    * @param content The content of the article.
    * @return The Builder

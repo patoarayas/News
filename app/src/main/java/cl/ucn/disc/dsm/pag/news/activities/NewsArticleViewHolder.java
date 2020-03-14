@@ -37,6 +37,10 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     this.binding = rowNewsArticleBinding;
   }
 
+  /**
+   * Performs the binding with the layout.
+   * @param newsArticle The NewsArticle to be binded.
+   */
   public void bind(final NewsArticle newsArticle) {
     this.binding.title.setText(newsArticle.getTitle());
     this.binding.summary.setText(newsArticle.getSummary());

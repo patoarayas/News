@@ -25,6 +25,5 @@ public class GnewsResult {
 
   public Integer timestamp;
   public Integer articleCount;
-  public List<Article> articles =new ArrayList<Article>();
-
+  public List<Article> articles = new ArrayList<Article>();
 }
