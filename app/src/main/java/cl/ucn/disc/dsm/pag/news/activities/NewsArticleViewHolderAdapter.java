@@ -24,12 +24,16 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cl.ucn.disc.dsm.pag.news.databinding.NewsArticleRowBinding;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
+import cl.ucn.disc.dsm.pag.news.services.NewsService;
+import cl.ucn.disc.dsm.pag.news.services.gnews.GnewsNewsService;
+import cl.ucn.disc.dsm.pag.news.services.newsapi.NewsApiNewsService;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NewsArticleViewHolderAdapter extends RecyclerView.Adapter<NewsArticleViewHolder> {
 
   private List<NewsArticle> news;
+
 
   /**
    * Constructor

@@ -28,14 +28,17 @@ import cl.ucn.disc.dsm.pag.news.R;
 import cl.ucn.disc.dsm.pag.news.databinding.ActivityMainBinding;
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import cl.ucn.disc.dsm.pag.news.services.NewsService;
+import cl.ucn.disc.dsm.pag.news.services.gnews.GnewsNewsService;
 import cl.ucn.disc.dsm.pag.news.services.newsapi.NewsApiNewsService;
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang3.time.StopWatch;
 
 public class MainActivity extends AppCompatActivity {
 
   private NewsArticleViewHolderAdapter adapter;
-  private NewsService service;
+  private NewsService newsapi;
+  private NewsService gnews;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -54,16 +57,15 @@ public class MainActivity extends AppCompatActivity {
     binding.rvNews.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
     // Service
-    this.service = new NewsApiNewsService();
+    this.newsapi = new NewsApiNewsService();
+    this.gnews = new GnewsNewsService();
 
 
     this.getNews();
     binding.swlRefresh.setRefreshing(false);
+    // FIXME: Fix Refresh
+    //binding.swlRefresh.setOnRefreshListener(this::getNews);
 
-    binding.swlRefresh.setOnRefreshListener(this::getNews);
-    if(binding.swlRefresh.isRefreshing()){
-      binding.swlRefresh.setRefreshing(false);
-    }
   }
 
   void getNews(){
@@ -72,7 +74,9 @@ public class MainActivity extends AppCompatActivity {
       try {
 
         // Get news from the service (News API)
-        final List<NewsArticle> news = this.service.getNews(50);
+        List<NewsArticle> news = new ArrayList<NewsArticle>();
+        news.addAll(this.newsapi.getNews(40));
+        news.addAll(this.gnews.getNews(10));
 
         // (in UI)
         this.runOnUiThread(() -> {
