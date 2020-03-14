@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 
 public class NewsArticleAdapter<T> {
 
-
+  public final static Logger LOG = LoggerFactory.getLogger(NewsArticleAdapter.class);
   // Adapter
   private final NewsArticleTransformer<T> newsArticleTransformer;
 
@@ -57,7 +57,7 @@ public class NewsArticleAdapter<T> {
         news.add(newsArticleTransformer.transform(t));
       } catch (NewsArticleTransformerException e) {
 
-        Log.d("NewsArticleAdapter", "Unable to transform article");
+        LOG.debug("Unable to transform article");
       }
 
 

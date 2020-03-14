@@ -16,29 +16,25 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package cl.ucn.disc.dsm.pag.news.services.newsapi;
+package cl.ucn.disc.dsm.pag.news.services.gnews;
 
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import cl.ucn.disc.dsm.pag.news.services.NewsService;
+import cl.ucn.disc.dsm.pag.news.services.newsapi.NewsApiNewsService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+public class GnewsNewsArticleServiceTest {
 
-public class NewsApiNewsServiceTest {
+  public static final Logger LOG = LoggerFactory.getLogger(GnewsNewsArticleServiceTest.class);
 
-  // Logger
-  final static Logger LOG = LoggerFactory.getLogger(NewsApiNewsServiceTest.class);
-  /**
-   * Test if the NewsApi service is receiving news from the REST API.
-   */
   @Test
-  void testGetNewsFromNewsApi() {
-
-    final int size = 20;
-    NewsService newsService = new NewsApiNewsService();
+  void getNewsFromGnews() {
+    final int size = 10;
+    NewsService newsService = new GnewsNewsService();
     List<NewsArticle> news = newsService.getNews(size);
 
     for (NewsArticle art : news) {

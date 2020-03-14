@@ -75,10 +75,10 @@ public class NewsApiNewsService implements NewsService {
     }
   }
 
-  // TODO: implement category change or getEverthing()
+
   @Override
   public List<NewsArticle> getNews(int pageSize) {
-    final Call<NewsApiResult> call = this.newsApi.getTopHeadlines("technology",pageSize);
+    final Call<NewsApiResult> call = this.newsApi.getTopHeadlines("coronavirus",pageSize);
     return getNewsFromCall(call);
   }
 
@@ -90,14 +90,14 @@ public class NewsApiNewsService implements NewsService {
     /**
      * Makes a request to NewsAPI
      *
-     * @param category The category requested.
+     * @param query The category requested.
      * @param pageSize The number of news requested
      * @return A NewsApiResult (A list of newsApi Articles)
      */
     @Headers({"X-Api-Key: " + API_KEY})
-    @GET("top-headlines")
+    @GET("everything?language=es")
     Call<NewsApiResult> getTopHeadlines(
-        @Query("category") final String category, @Query("pageSize") final int pageSize);
+        @Query("q") final String query, @Query("pageSize") final int pageSize);
 
   }
 

@@ -20,6 +20,7 @@ plugins {
     id 'com.android.application'
 }
 android {
+    ndkVersion "21.0.6011959-rc2"
     compileSdkVersion 29
     viewBinding {
         enabled = true
