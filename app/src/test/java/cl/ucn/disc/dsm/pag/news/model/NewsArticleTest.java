@@ -18,7 +18,6 @@
 
 package cl.ucn.disc.dsm.pag.news.model;
 
-import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.threeten.bp.ZonedDateTime;
@@ -41,12 +40,14 @@ public class NewsArticleTest {
     final ZonedDateTime date = ZonedDateTime.now(NewsArticle.timezone);
 
     // NewsArticle instance
-    final NewsArticle article = new NewsArticleBuilder(id,title,summary,date)
-        .withAuthor(author)
-        .withContent(content)
-        .withArticleUrl(articleUrl)
-        .withImageUrl(imgUrl)
-        .withSource(source).build();
+    final NewsArticle article =
+        new NewsArticleBuilder(id, title, summary, date)
+            .withAuthor(author)
+            .withContent(content)
+            .withArticleUrl(articleUrl)
+            .withImageUrl(imgUrl)
+            .withSource(source)
+            .build();
 
     // Assertions
     Assertions.assertEquals(id, article.getId());

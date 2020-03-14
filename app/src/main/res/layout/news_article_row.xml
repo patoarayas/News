@@ -93,4 +93,5 @@
     fresco:layout_constraintTop_toTopOf="parent"
     fresco:placeholderImage="@drawable/ic_launcher_background" />
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,5 +19,5 @@
 <resources>
   <string name="app_name">News</string>
   <string name="title">News App</string>
-  <string name="subtitle">News from NewsAPI.org</string>
+  <string name="subtitle">News from NewsAPI and GNews</string>
 </resources>

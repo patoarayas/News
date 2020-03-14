@@ -32,7 +32,6 @@ import cl.ucn.disc.dsm.pag.news.services.gnews.GnewsNewsService;
 import cl.ucn.disc.dsm.pag.news.services.newsapi.NewsApiNewsService;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.commons.lang3.time.StopWatch;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,50 +53,52 @@ public class MainActivity extends AppCompatActivity {
     this.adapter = new NewsArticleViewHolderAdapter();
     binding.rvNews.setAdapter(this.adapter);
     binding.rvNews.setLayoutManager(new LinearLayoutManager(this));
-    binding.rvNews.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+    binding.rvNews.addItemDecoration(
+        new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
     // Service
     this.newsapi = new NewsApiNewsService();
     this.gnews = new GnewsNewsService();
 
-
     this.getNews();
     binding.swlRefresh.setRefreshing(false);
     // FIXME: Fix Refresh
-    //binding.swlRefresh.setOnRefreshListener(this::getNews);
+    // binding.swlRefresh.setOnRefreshListener(this::getNews);
 
   }
 
-  void getNews(){
+  void getNews() {
 
-    AsyncTask.execute(()-> {
-      try {
+    AsyncTask.execute(
+        () -> {
+          try {
 
-        // Get news from the service (News API)
-        List<NewsArticle> news = new ArrayList<NewsArticle>();
-        news.addAll(this.newsapi.getNews(40));
-        news.addAll(this.gnews.getNews(10));
+            // Get news from the service (News API)
+            List<NewsArticle> news = new ArrayList<NewsArticle>();
+            news.addAll(this.newsapi.getNews(40));
+            news.addAll(this.gnews.getNews(10));
+            // TODO: Sort list by date
 
-        // (in UI)
-        this.runOnUiThread(() -> {
-          // Set adapter
-          this.adapter.setNews(news);
-        });
-      }
-      catch(Exception ex){
-        this.runOnUiThread(() -> {
-          // Build error message
-          final StringBuffer sb = new StringBuffer("Error: ");
-          sb.append(ex.getMessage());
-          if (ex.getCause() != null) {
-            sb.append(", ");
-            sb.append(ex.getCause().getMessage());
+            // (in UI)
+            this.runOnUiThread(
+                () -> {
+                  // Set adapter
+                  this.adapter.setNews(news);
+                });
+          } catch (Exception ex) {
+            this.runOnUiThread(
+                () -> {
+                  // Build error message
+                  final StringBuffer sb = new StringBuffer("Error: ");
+                  sb.append(ex.getMessage());
+                  if (ex.getCause() != null) {
+                    sb.append(", ");
+                    sb.append(ex.getCause().getMessage());
+                  }
+                  // Show a Toast
+                  Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
+                });
           }
-          // Show a Toast
-          Toast.makeText(this, sb.toString(), Toast.LENGTH_LONG).show();
         });
-      }
-    });
-
   }
 }

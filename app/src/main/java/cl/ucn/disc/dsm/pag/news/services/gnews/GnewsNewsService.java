@@ -86,7 +86,7 @@ public class GnewsNewsService implements NewsService {
     final String API_KEY = "0d194e505de173cb271edc62b375c329";
 
     //@Headers({"X-Api-Key: " + API_KEY})
-    @GET("top-news?token="+API_KEY)
+    @GET("search?q=coronavirus&country=cl&&token="+API_KEY)
     Call<GnewsResult> getTopHeadlines (
         @Query("lang") final String lang, @Query("max") final int max);
   }

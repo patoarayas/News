@@ -19,35 +19,29 @@
 package cl.ucn.disc.dsm.pag.news.services;
 
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
-import cl.ucn.disc.dsm.pag.news.services.NewsService;
-import cl.ucn.disc.dsm.pag.news.services.MockupNewsService;
-
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-/**
- * Test NewsService interface
- */
+/** Test NewsService interface */
 public class NewsServiceTest {
 
   /**
    * Test service interface using mocked implementation.
+   *
    * @param pageSize Number of articles to be requested.
    */
   @ParameterizedTest
-  @ValueSource(
-      ints = {1,2,3,4,5,6,7,8,9,0})
-  public void testGetNews(int pageSize){
+  @ValueSource(ints = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0})
+  public void testGetNews(int pageSize) {
 
-    NewsService newsService = new MockupNewsService() ;
+    NewsService newsService = new MockupNewsService();
 
     // News list
     List<NewsArticle> news = newsService.getNews(pageSize);
 
-    Assertions.assertNotNull(news,"Expected not null");
+    Assertions.assertNotNull(news, "Expected not null");
     Assertions.assertEquals(news.size(), pageSize, "Wrong size");
   }
 }

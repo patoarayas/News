@@ -81,7 +81,7 @@ public class GnewsArticleAdapter implements NewsArticleAdapter.NewsArticleTransf
     final ZonedDateTime publishedAt =
         parseZonedDateTime(article.publishedAt).withZoneSameInstant(NewsArticle.timezone);
 
-    String description = article.description.equals("") ? "See more at: "+article.url : article.description;
+    String description = article.description.equals("") ? "Open on the browser to see full story.": article.description;
     NewsArticleBuilder builder =
         new NewsArticleBuilder(id, article.title, description, publishedAt)
             .withSource(article.source.name)

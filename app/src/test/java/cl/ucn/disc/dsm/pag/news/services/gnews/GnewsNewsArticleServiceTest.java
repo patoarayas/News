@@ -20,7 +20,6 @@ package cl.ucn.disc.dsm.pag.news.services.gnews;
 
 import cl.ucn.disc.dsm.pag.news.model.NewsArticle;
 import cl.ucn.disc.dsm.pag.news.services.NewsService;
-import cl.ucn.disc.dsm.pag.news.services.newsapi.NewsApiNewsService;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -39,6 +38,7 @@ public class GnewsNewsArticleServiceTest {
 
     for (NewsArticle art : news) {
       LOG.debug("Article transformed - TITLE:" + art.getTitle());
+      LOG.debug("DESCRIPTION:" + art.getSummary());
     }
     Assertions.assertNotNull(news, "List of news was NULL");
     Assertions.assertEquals(

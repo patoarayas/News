@@ -24,19 +24,15 @@ import java.util.ArrayList;
 import java.util.List;
 import org.threeten.bp.ZonedDateTime;
 
-/**
- * Mocks a news resource. implements NewsService
- */
-public class MockupNewsService implements NewsService{
+/** Mocks a news resource. implements NewsService */
+public class MockupNewsService implements NewsService {
 
-  /**
-   * Constructor
-   */
-  public MockupNewsService() {
-  }
+  /** Constructor */
+  public MockupNewsService() {}
 
   /**
    * Creates a List of news.
+   *
    * @param pageSize How many news should be returned.
    * @return A List of news articles.
    */
@@ -45,12 +41,12 @@ public class MockupNewsService implements NewsService{
 
     List<NewsArticle> news = new ArrayList<NewsArticle>();
 
-    for(int i = 0; i < pageSize; i++){
-      NewsArticle art = new NewsArticleBuilder(i*1L,"MockTitle","MockSummary",ZonedDateTime.now()).build();
+    for (int i = 0; i < pageSize; i++) {
+      NewsArticle art =
+          new NewsArticleBuilder(i * 1L, "MockTitle", "MockSummary", ZonedDateTime.now()).build();
       news.add(art);
     }
 
     return news;
-
   }
 }

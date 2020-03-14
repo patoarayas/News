@@ -18,8 +18,6 @@
 
 package cl.ucn.disc.dsm.pag.news.activities;
 
-import android.view.View;
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import cl.ucn.disc.dsm.pag.news.R;
 import cl.ucn.disc.dsm.pag.news.databinding.NewsArticleRowBinding;
@@ -30,18 +28,16 @@ import org.threeten.bp.DateTimeUtils;
 
 public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
 
-
-
-  private final NewsArticleRowBinding binding;
   // PrettyTime date formatter
   private static final PrettyTime PRETTY_TIME = new PrettyTime();
+  private final NewsArticleRowBinding binding;
 
   public NewsArticleViewHolder(NewsArticleRowBinding rowNewsArticleBinding) {
     super(rowNewsArticleBinding.getRoot());
     this.binding = rowNewsArticleBinding;
   }
 
-  public void bind (final NewsArticle newsArticle){
+  public void bind(final NewsArticle newsArticle) {
     this.binding.title.setText(newsArticle.getTitle());
     this.binding.summary.setText(newsArticle.getSummary());
     this.binding.author.setText(newsArticle.getAuthor());
@@ -50,11 +46,10 @@ public class NewsArticleViewHolder extends RecyclerView.ViewHolder {
     final Date date = DateTimeUtils.toDate(newsArticle.getDate().toInstant());
     this.binding.publishedAt.setText(PRETTY_TIME.format(date));
     // Image
-    if(newsArticle.getImgUrl() != null){
+    if (newsArticle.getImgUrl() != null) {
       this.binding.image.setImageURI(newsArticle.getImgUrl());
     } else {
       this.binding.image.setImageResource(R.drawable.ic_launcher_background);
     }
-
   }
 }
